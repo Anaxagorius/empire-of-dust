@@ -19105,16 +19105,17 @@ Error generating stack: ` +
     let r = (e - t) / t;
     return t * (1 + Math.log1p(r) * n);
   }
-  var UPGRADE_COST_MULT = 2;
+  var UPGRADE_COST_MULT = 2,
+    IMPROVEMENT_DIM_START = 100;
   function pe(e, t, n, r) {
     return Math.ceil(e * 1.1 ** n * r * UPGRADE_COST_MULT);
   }
   function me(e, t) {
     if (t <= 0) return 0;
-    if (t <= 100) return e * t * (1 + 0.12 * (t - 1));
-    let n = 1 + 0.12 * 99,
-      r = e * 100 * n,
-      i = t - 100;
+    if (t <= IMPROVEMENT_DIM_START) return e * t * (1 + 0.12 * (t - 1));
+    let n = 1 + 0.12 * (IMPROVEMENT_DIM_START - 1),
+      r = e * IMPROVEMENT_DIM_START * n,
+      i = t - IMPROVEMENT_DIM_START;
     return r + e * n * Math.log1p(i);
   }
   function he(e) {
