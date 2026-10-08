@@ -19719,6 +19719,7 @@ Error generating stack: ` +
           ? 0.18 + Math.min(0.55, N(e, `stormResist`))
           : 1,
       p = e.event?.kind === `pinkslip` ? 0.5 : 1,
+      rentGrid = 1 + M(N(e, `powerRentPct`) + P(e, `powerRentPct`), 0.5, 0.32),
       m = l * u * d * f * p * rentGrid * (t ? t.mult.realty : 1) * n,
       h = 1 + M(N(e, `divPct`) + P(e, `divPct`), 2.2, 0.32),
       g = N(e, `tickGain`) + P(e, `tickGain`),
@@ -19741,7 +19742,6 @@ Error generating stack: ` +
       minerFlat = N(e, `minerFlat`) + P(e, `minerFlat`),
       ee = 1 + M(N(e, `minePct`) + P(e, `minePct`), 2.5, 0.32),
       minerPct = 1 + M(N(e, `minerPct`) + P(e, `minerPct`), 2.4, 0.32),
-      rentGrid = 1 + M(N(e, `powerRentPct`) + P(e, `powerRentPct`), 0.5, 0.32),
       S = e.event?.kind === `blackout` ? 0.08 : 1,
       C = (x + minerFlat) * ee * minerPct * S * (t ? t.mult.crypto : 1) * n,
       L = N(e, `factoryFlat`) + P(e, `factoryFlat`),
