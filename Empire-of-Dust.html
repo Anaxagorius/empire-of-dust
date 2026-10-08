@@ -19043,16 +19043,16 @@ Error generating stack: ` +
         name: `Labourer`,
         title: `The One Who Stays`,
         blurb: `They aged you out with a paper sack and a cough. You know the weight of a pail, the bite of wire, the hour that does not end.`,
-        bonus: `+70% click power, +22% finds. The dirt still answers you.`,
+        bonus: `+25% click power, +8% finds. The dirt still answers you.`,
         penalty: `−28% markets, −20% rent. Crews cost more — you do not trust them.`,
         mult: {
-          labor: 1.22,
-          realty: 0.8,
-          stocks: 0.72,
-          crypto: 0.72,
-          itemFind: 1.22,
+          labor: 1.08,
+          realty: 0.88,
+          stocks: 0.8,
+          crypto: 0.8,
+          itemFind: 1.08,
           managerCost: 1.2,
-          click: 1.7,
+          click: 1.25,
         },
       },
     },
@@ -19070,7 +19070,7 @@ Error generating stack: ` +
         title: `A Claim`,
         blurb: `You take a plot and the plot takes you. Money and prices both run hotter. The choke is the same weather.`,
         bonus: `3× all income — scavenging, rent, the pit, and hash.`,
-        penalty: `3× all prices. Soft caps still strangle the surplus. Rebirth asks for more dust.`,
+        penalty: `6× all prices. Soft caps still strangle the surplus. Rebirth asks for more dust.`,
         mult: 3,
       },
       citizen: {
@@ -19078,7 +19078,7 @@ Error generating stack: ` +
         title: `A Name on a Ledger`,
         blurb: `The town admits you. The ledgers swell. So do the bills. You will count bigger numbers toward the same choke.`,
         bonus: `5× all income — every channel, every pail.`,
-        penalty: `5× all prices. The wind still chokes the late game. Cycles demand a fatter purse.`,
+        penalty: `10× all prices. The wind still chokes the late game. Cycles demand a fatter purse.`,
         mult: 5,
       },
     };
@@ -19106,10 +19106,14 @@ Error generating stack: ` +
     return t * (1 + Math.log1p(r) * n);
   }
   function pe(e, t, n, r) {
-    return Math.ceil(e * 1.1 ** n * r);
+    return Math.ceil(e * 1.1 ** n * r * 2);
   }
   function me(e, t) {
-    return t <= 0 ? 0 : e * t * (1 + 0.12 * (t - 1));
+    if (t <= 0) return 0;
+    if (t <= 100) return e * t * (1 + 0.12 * (t - 1));
+    let n = e * 100 * (1 + 0.12 * 99),
+      r = t - 100;
+    return n + e * 12.88 * Math.sqrt(r);
   }
   function he(e) {
     switch (e) {
@@ -20886,7 +20890,7 @@ Error generating stack: ` +
           : t === `rebirth` || t === `prestige` || t === `ascension` || ye(t)
             ? 1
             : ve(e, t);
-    for (; a[n] < 18; ) {
+    for (;;) {
       let c = pe(i.baseCost, i.growth, a[n], s);
       if (xe(e, t) < c || (Se(e, t, c), (a[n] += 1), (o += 1), !r)) break;
     }
@@ -23426,8 +23430,8 @@ Error generating stack: ` +
                                 className: `mt-2 text-xs ${n ? `text-accent-fg/80` : `text-faint`}`,
                                 children:
                                   t.mult === 1
-                                    ? `Base yields and prices`
-                                    : `${t.mult}× income and cost`,
+                                    ? `Base income and 2× costs`
+                                    : `${t.mult}× income and ${2 * t.mult}× costs`,
                               }),
                             ],
                           },
@@ -25569,7 +25573,7 @@ Error generating stack: ` +
                   }),
                   (0, H.jsx)(`p`, {
                     className: `mt-1 max-w-2xl text-sm text-muted`,
-                    children: `Automation is a luxury of people who already won. Hire a foreman for Labor, a landlady for Tenements, a pit broker for The Pit, and a hash-priest for Bitcoin. Without them, rent spoils, the tape idles, and the relic hashes in its sleep. MAX buys rungs until the purse or the cap gives out.`,
+                    children: `Automation is a luxury of people who already won. Hire a foreman for Labor, a landlady for Tenements, a pit broker for The Pit, and a hash-priest for Bitcoin. Without them, rent spoils, the tape idles, and the relic hashes in its sleep. MAX buys rungs until the purse gives out.`,
                   }),
                   (0, H.jsx)(`div`, {
                     className: `mt-4`,
