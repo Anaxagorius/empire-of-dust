@@ -19112,10 +19112,11 @@ Error generating stack: ` +
   function me(e, t) {
     if (t <= 0) return 0;
     if (t <= 100) return e * t * (1 + 0.12 * (t - 1));
-    let n = e * 100 * (1 + 0.12 * 99),
+    let i = 1 + 0.12 * 99,
+      n = e * 100 * i,
       r = t - 100,
-      i = 1 + 0.12 * 99;
-    return n + e * i * Math.sqrt(r);
+      a = Math.sqrt(r);
+    return n + e * i * a;
   }
   function he(e) {
     switch (e) {
@@ -23432,7 +23433,7 @@ Error generating stack: ` +
                                 className: `mt-2 text-xs ${n ? `text-accent-fg/80` : `text-faint`}`,
                                 children:
                                   t.mult === 1
-                                    ? `Base income and ${UPGRADE_COST_MULT}× costs`
+                                    ? `Base income and costs`
                                     : `${t.mult}× income and ${UPGRADE_COST_MULT * t.mult}× costs`,
                               }),
                             ],
